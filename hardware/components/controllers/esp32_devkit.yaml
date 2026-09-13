@@ -1,0 +1,104 @@
+identity:
+  id: esp32_devkit
+  name: ESP32 DevKit
+  manufacturer: Espressif Systems
+  part_number: ESP32-DevKitC V4
+  description: ESP32-based development board providing GPIO, ADC, PWM, I2C, SPI, UART, Wi-Fi, and Bluetooth capabilities.
+
+classification:
+  category: controller
+  subcategory: microcontroller
+
+capabilities:
+  - gpio
+  - adc
+  - pwm
+  - i2c
+  - spi
+  - uart
+  - wifi
+  - bluetooth
+  - digital_input
+  - digital_output
+
+interfaces:
+  - gpio
+  - adc
+  - pwm
+  - i2c
+  - spi
+  - uart
+  - usb
+
+pins:
+  - name: 3V3
+    type: power
+    direction: power
+    required: true
+
+  - name: 5V
+    type: power
+    direction: power
+    required: false
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: GPIO
+    type: gpio
+    direction: bidirectional
+    required: false
+
+electrical:
+  voltage:
+    typical: 3.3
+    unit: V
+
+compatibility:
+  frameworks:
+    - arduino
+    - esp-idf
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+    - ESP-IDF
+  languages:
+    - C++
+    - C
+
+hal:
+  operations:
+    - name: digital_read
+      description: Read a digital GPIO input.
+
+    - name: digital_write
+      description: Write a digital GPIO output.
+
+    - name: analog_read
+      description: Read an analog input using the ADC.
+
+    - name: pwm_write
+      description: Generate a PWM output.
+
+    - name: i2c_transfer
+      description: Communicate with an I2C peripheral.
+
+    - name: spi_transfer
+      description: Communicate with an SPI peripheral.
+
+    - name: uart_transfer
+      description: Communicate with a UART peripheral.
+
+constraints:
+  - GPIO availability depends on the exact ESP32 module and development board variant.
+  - Some GPIOs have boot, flash, input-only, or other hardware-specific restrictions.
+  - External peripherals must operate within compatible voltage and electrical limits.
+  - The exact pin assignment must be determined before generating firmware.
+
+safety:
+  - Do not exceed the electrical limits of the selected ESP32 board or module.
+  - Do not connect incompatible voltage levels directly to GPIO pins.

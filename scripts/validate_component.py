@@ -8,23 +8,21 @@ from jsonschema import Draft202012Validator
 ROOT = Path(__file__).resolve().parents[1]
 
 SCHEMA_PATH = ROOT / "hardware" / "schemas" / "component.schema.json"
-COMPONENT_PATH = (
-    ROOT
-    / "hardware"
-    / "components"
-    / "sensors"
-    / "bno085.yaml"
-)
+COMPONENTS_PATH = ROOT / "hardware" / "components"
 
 
-def main() -> None:
+def load_schema():
     with SCHEMA_PATH.open("r", encoding="utf-8") as file:
-        schema = json.load(file)
+        return json.load(file)
 
-    with COMPONENT_PATH.open("r", encoding="utf-8") as file:
+
+def find_components():
+    return sorted(COMPONENTS_PATH.rglob("*.yaml"))
+
+
+def validate_component(component_path, validator):
+    with component_path.open("r", encoding="utf-8") as file:
         component = yaml.safe_load(file)
-
-    validator = Draft202012Validator(schema)
 
     errors = sorted(
         validator.iter_errors(component),
@@ -32,18 +30,52 @@ def main() -> None:
     )
 
     if errors:
-        print("❌ Component validation failed.")
-        print()
-
+        print(f"❌ {component_path.relative_to(ROOT)}")
+        
         for error in errors:
             location = " → ".join(str(item) for item in error.path)
-            print(f"- {location}: {error.message}")
 
+            if location:
+                print(f"   - {location}: {error.message}")
+            else:
+                print(f"   - {error.message}")
+
+        return False
+
+    print(
+        f"✅ {component['identity']['name']} "
+        f"({component['identity']['id']})"
+    )
+
+    return True
+
+
+def main():
+    schema = load_schema()
+    validator = Draft202012Validator(schema)
+
+    component_files = find_components()
+
+    if not component_files:
+        print("❌ No component YAML files found.")
         raise SystemExit(1)
 
-    print("✅ Component validation successful.")
-    print(f"Component: {component['identity']['name']}")
-    print(f"ID: {component['identity']['id']}")
+    print(f"Found {len(component_files)} component(s).")
+    print()
+
+    failed = False
+
+    for component_path in component_files:
+        if not validate_component(component_path, validator):
+            failed = True
+
+    print()
+
+    if failed:
+        print("❌ Component validation failed.")
+        raise SystemExit(1)
+
+    print("✅ All components passed validation.")
 
 
 if __name__ == "__main__":
