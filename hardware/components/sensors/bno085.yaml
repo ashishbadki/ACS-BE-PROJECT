@@ -1,20 +1,24 @@
 identity:
   id: bno085
   name: BNO085
-  manufacturer: Hillcrest Laboratories
+  manufacturer: CEVA / Hillcrest Labs
   part_number: BNO085
-  description: 9-axis absolute orientation sensor with integrated sensor fusion.
+  description: 9-axis sensor hub System in Package with integrated accelerometer, gyroscope, magnetometer, sensor fusion, and embedded processing.
 
 classification:
   category: sensor
   subcategory: imu
 
 capabilities:
-  - orientation
   - acceleration
   - angular_velocity
-  - rotation
-  - imu
+  - magnetic_field
+  - orientation
+  - rotation_vector
+  - gravity
+  - linear_acceleration
+  - sensor_fusion
+  - activity_classification
 
 interfaces:
   - i2c
@@ -22,7 +26,12 @@ interfaces:
   - uart
 
 pins:
-  - name: VIN
+  - name: VDD
+    type: power
+    direction: power
+    required: true
+
+  - name: VDDIO
     type: power
     direction: power
     required: true
@@ -32,19 +41,44 @@ pins:
     direction: power
     required: true
 
-  - name: SDA
+  - name: HOST_SDA
     type: i2c_data
     direction: bidirectional
-    required: true
+    required: false
 
-  - name: SCL
+  - name: HOST_SCL
     type: i2c_clock
+    direction: bidirectional
+    required: false
+
+  - name: HOST_INTN
+    type: interrupt
+    direction: output
+    required: false
+
+  - name: RSTN
+    type: control
     direction: input
     required: true
 
+  - name: BOOTN
+    type: control
+    direction: input
+    required: false
+
+  - name: PS1
+    type: control
+    direction: input
+    required: false
+
+  - name: PS0
+    type: control
+    direction: input
+    required: false
+
 electrical:
   voltage:
-    min: 3.0
+    min: 2.4
     typical: 3.3
     max: 3.6
     unit: V
@@ -69,14 +103,26 @@ hal:
       description: Read fused orientation data.
 
     - name: read_acceleration
-      description: Read linear acceleration data.
+      description: Read acceleration data.
 
     - name: read_angular_velocity
-      description: Read angular velocity data.
+      description: Read gyroscope angular velocity data.
+
+    - name: read_magnetic_field
+      description: Read magnetic field data.
+
+    - name: read_linear_acceleration
+      description: Read linear acceleration data.
 
 constraints:
-  - Requires an appropriate hardware interface configuration.
-  - I2C address and bus configuration must be compatible with the selected breakout/module.
+  - Host communication can use I2C, SPI, or UART depending on protocol-selection configuration.
+  - Protocol selection pins are sampled at reset.
+  - VDD must remain within the specified 2.4 V to 3.6 V range.
+  - VDDIO must remain within the specified 1.65 V to 3.6 V range.
+  - Exact host pin configuration depends on the selected communication protocol.
+  - The 32.768 kHz crystal requirement applies to the BNO085 device-level design.
+  - A suitable hardware interface configuration is required before firmware generation.
 
 safety:
-  - Do not exceed the specified supply voltage.
+  - Do not exceed the specified VDD or VDDIO voltage limits.
+  - Do not connect incompatible host-interface voltage levels.
