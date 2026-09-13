@@ -1,0 +1,93 @@
+identity:
+  id: tcs34725
+  name: TCS34725
+  manufacturer: ams OSRAM
+  part_number: TCS34725
+  description: Digital RGB and clear-light color sensor with integrated infrared blocking filter and I2C interface.
+
+classification:
+  category: sensor
+  subcategory: color
+
+capabilities:
+  - color_sensing
+  - red_channel
+  - green_channel
+  - blue_channel
+  - clear_channel
+  - ambient_light_sensing
+
+interfaces:
+  - i2c
+
+pins:
+  - name: VDD
+    type: power
+    direction: power
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: SDA
+    type: i2c_data
+    direction: bidirectional
+    required: true
+
+  - name: SCL
+    type: i2c_clock
+    direction: input
+    required: true
+
+  - name: INT
+    type: interrupt
+    direction: output
+    required: false
+
+electrical:
+  voltage:
+    min: 2.7
+    typical: 3.0
+    max: 3.6
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries:
+    - Adafruit TCS34725
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: read_rgb
+      description: Read red, green, and blue channel measurements.
+
+    - name: read_clear
+      description: Read the clear-channel measurement.
+
+    - name: read_color_temperature
+      description: Calculate color temperature from sensor measurements.
+
+    - name: read_lux
+      description: Calculate illuminance from sensor measurements.
+
+constraints:
+  - Communication uses I2C.
+  - The default device address is 0x29.
+  - I2C communication supports fast mode up to 400 kHz.
+  - The sensor supply voltage must remain between 2.7 V and 3.6 V.
+  - Color measurements depend on the illumination and optical conditions of the application.
+
+safety:
+  - Do not exceed the specified VDD voltage range.
+  - Ensure the I2C logic levels are compatible with the connected controller.
