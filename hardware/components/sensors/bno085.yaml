@@ -1,0 +1,82 @@
+identity:
+  id: bno085
+  name: BNO085
+  manufacturer: Hillcrest Laboratories
+  part_number: BNO085
+  description: 9-axis absolute orientation sensor with integrated sensor fusion.
+
+classification:
+  category: sensor
+  subcategory: imu
+
+capabilities:
+  - orientation
+  - acceleration
+  - angular_velocity
+  - rotation
+  - imu
+
+interfaces:
+  - i2c
+  - spi
+  - uart
+
+pins:
+  - name: VIN
+    type: power
+    direction: power
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: SDA
+    type: i2c_data
+    direction: bidirectional
+    required: true
+
+  - name: SCL
+    type: i2c_clock
+    direction: input
+    required: true
+
+electrical:
+  voltage:
+    min: 3.0
+    typical: 3.3
+    max: 3.6
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries:
+    - Adafruit BNO08x
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: read_orientation
+      description: Read fused orientation data.
+
+    - name: read_acceleration
+      description: Read linear acceleration data.
+
+    - name: read_angular_velocity
+      description: Read angular velocity data.
+
+constraints:
+  - Requires an appropriate hardware interface configuration.
+  - I2C address and bus configuration must be compatible with the selected breakout/module.
+
+safety:
+  - Do not exceed the specified supply voltage.
