@@ -1,0 +1,82 @@
+identity:
+  id: oled_0_9_ssd1306
+  name: 0.9-inch OLED SSD1306
+  manufacturer: Generic module
+  part_number: SSD1306-based 0.9-inch OLED
+  description: Small monochrome OLED display module using an SSD1306-compatible controller.
+
+classification:
+  category: display
+  subcategory: oled
+
+capabilities:
+  - text_display
+  - graphics_display
+  - monochrome_display
+
+interfaces:
+  - i2c
+
+pins:
+  - name: VCC
+    type: power
+    direction: power
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: SDA
+    type: i2c_data
+    direction: bidirectional
+    required: true
+
+  - name: SCL
+    type: i2c_clock
+    direction: input
+    required: true
+
+electrical:
+  voltage:
+    min: 3.3
+    typical: 3.3
+    max: 5.0
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries:
+    - Adafruit SSD1306
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: initialize_display
+      description: Initialize the OLED controller.
+
+    - name: clear_display
+      description: Clear the display buffer.
+
+    - name: draw_text
+      description: Render text onto the display.
+
+    - name: update_display
+      description: Transfer the display buffer to the OLED.
+
+constraints:
+  - Exact module voltage tolerance and controller configuration depend on the physical breakout board.
+  - Display resolution and I2C address must be confirmed for the selected module.
+  - The SSD1306 controller and module wiring must be compatible with the generated driver configuration.
+
+safety:
+  - Do not exceed the electrical limits of the specific OLED module.

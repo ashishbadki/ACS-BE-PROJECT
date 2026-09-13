@@ -1,0 +1,65 @@
+identity:
+  id: led
+  name: LED
+  manufacturer: Generic
+  part_number: Standard 5mm LED
+  description: Discrete light-emitting diode for visual indication.
+
+classification:
+  category: output
+  subcategory: indicator_led
+
+capabilities:
+  - visual_indicator
+  - status_indicator
+
+interfaces:
+  - gpio
+
+pins:
+  - name: ANODE
+    type: gpio
+    direction: input
+    required: true
+
+  - name: CATHODE
+    type: ground
+    direction: power
+    required: true
+
+electrical:
+  voltage:
+    min: 1.8
+    typical: 2.0
+    max: 3.3
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: led_on
+      description: Turn the indicator LED on.
+
+    - name: led_off
+      description: Turn the indicator LED off.
+
+constraints:
+  - A current-limiting resistor is required.
+  - Forward voltage depends on LED color and construction.
+  - Exact current rating depends on the selected LED.
+
+safety:
+  - Never connect the LED directly across a power source without current limiting.
+  - Keep LED current within the selected component rating.

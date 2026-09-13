@@ -1,0 +1,71 @@
+identity:
+  id: dht22
+  name: DHT22
+  manufacturer: Aosong Electronics
+  part_number: AM2302 / DHT22
+  description: Digital temperature and relative humidity sensor.
+
+classification:
+  category: sensor
+  subcategory: environmental
+
+capabilities:
+  - temperature_measurement
+  - humidity_measurement
+
+interfaces:
+  - digital
+
+pins:
+  - name: VCC
+    type: power
+    direction: power
+    required: true
+
+  - name: DATA
+    type: gpio
+    direction: bidirectional
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+electrical:
+  voltage:
+    min: 3.3
+    typical: 3.3
+    max: 5.5
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries:
+    - DHT sensor library
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: read_temperature
+      description: Read ambient temperature.
+
+    - name: read_humidity
+      description: Read relative humidity.
+
+constraints:
+  - Communication uses a single digital data line.
+  - A suitable pull-up configuration is required.
+  - Exact measurement accuracy and timing depend on the sensor variant.
+
+safety:
+  - Do not exceed the specified supply voltage.
+  - Do not connect the data line to incompatible voltage levels.

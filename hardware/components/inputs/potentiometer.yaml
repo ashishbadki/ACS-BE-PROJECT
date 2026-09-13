@@ -1,0 +1,66 @@
+identity:
+  id: potentiometer
+  name: Potentiometer
+  manufacturer: Generic
+  part_number: 10k Linear Potentiometer
+  description: Three-terminal variable resistor suitable for analog user input.
+
+classification:
+  category: input
+  subcategory: analog_control
+
+capabilities:
+  - analog_input
+  - user_control
+  - variable_resistance
+
+interfaces:
+  - adc
+  - analog
+
+pins:
+  - name: VCC
+    type: power
+    direction: power
+    required: true
+
+  - name: WIPER
+    type: analog
+    direction: output
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+electrical:
+  voltage:
+    typical: 3.3
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: read_value
+      description: Read the potentiometer position through an ADC input.
+
+constraints:
+  - Wiper voltage must remain within the selected ESP32 ADC input range.
+  - Exact resistance value depends on the selected potentiometer.
+  - ADC attenuation and calibration may affect measured values.
+
+safety:
+  - Do not apply a voltage above the ADC input limit.

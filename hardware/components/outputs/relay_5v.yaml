@@ -1,0 +1,87 @@
+identity:
+  id: relay_5v
+  name: 5V Relay Module
+  manufacturer: Generic
+  part_number: SRD-05VDC-SL-C based module
+  description: Single-channel 5V electromechanical relay module for switching an external load.
+
+classification:
+  category: output
+  subcategory: relay
+
+capabilities:
+  - on_off_switching
+  - isolated_load_switching
+
+interfaces:
+  - gpio
+
+pins:
+  - name: VCC
+    type: power
+    direction: power
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: IN
+    type: control
+    direction: input
+    required: true
+
+  - name: COM
+    type: control
+    direction: bidirectional
+    required: true
+
+  - name: "NO"
+    type: control
+    direction: bidirectional
+    required: true
+
+  - name: "NC"
+    type: control
+    direction: bidirectional
+    required: true
+
+electrical:
+  voltage:
+    min: 5.0
+    typical: 5.0
+    max: 5.0
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: relay_on
+      description: Energize the relay through the module control input.
+
+    - name: relay_off
+      description: De-energize the relay.
+
+constraints:
+  - Exact trigger polarity depends on the relay module implementation.
+  - The relay coil must be powered from the module supply, not directly from an ESP32 GPIO.
+  - Contact voltage and current ratings depend on the relay used on the module.
+  - AC mains switching requires appropriate electrical safety practices.
+
+safety:
+  - Never route mains voltage through an ESP32 or breadboard.
+  - Respect the relay contact voltage and current ratings.
+  - Use appropriate enclosure, insulation, fusing, and wiring for hazardous voltages.

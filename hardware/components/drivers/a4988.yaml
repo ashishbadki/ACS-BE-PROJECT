@@ -1,0 +1,128 @@
+identity:
+  id: a4988
+  name: A4988
+  manufacturer: Allegro MicroSystems
+  part_number: A4988
+  description: Microstepping bipolar stepper motor driver IC/module.
+
+classification:
+  category: driver
+  subcategory: stepper_driver
+
+capabilities:
+  - stepper_motor_drive
+  - current_control
+  - microstepping
+  - direction_control
+
+interfaces:
+  - gpio
+
+pins:
+  - name: VMOT
+    type: power
+    direction: power
+    required: true
+
+  - name: VDD
+    type: power
+    direction: power
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: STEP
+    type: control
+    direction: input
+    required: true
+
+  - name: DIR
+    type: control
+    direction: input
+    required: true
+
+  - name: ENABLE
+    type: control
+    direction: input
+    required: false
+
+  - name: MS1
+    type: control
+    direction: input
+    required: false
+
+  - name: MS2
+    type: control
+    direction: input
+    required: false
+
+  - name: MS3
+    type: control
+    direction: input
+    required: false
+
+  - name: A1
+    type: motor
+    direction: output
+    required: true
+
+  - name: A2
+    type: motor
+    direction: output
+    required: true
+
+  - name: B1
+    type: motor
+    direction: output
+    required: true
+
+  - name: B2
+    type: motor
+    direction: output
+    required: true
+
+electrical:
+  voltage:
+    min: 8.0
+    typical: 12.0
+    max: 35.0
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries:
+    - AccelStepper
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: step_motor
+      description: Generate STEP pulses to advance the motor.
+
+    - name: set_direction
+      description: Set the motor direction.
+
+    - name: set_microstep_mode
+      description: Configure the microstepping mode using MS1, MS2, and MS3.
+
+constraints:
+  - Logic input voltage must be compatible with the selected controller.
+  - Motor current must be configured according to the selected motor and carrier implementation.
+  - Adequate cooling may be required at higher currents.
+  - VMOT must remain within the driver operating range.
+  - Appropriate bulk capacitance is required near the motor supply.
+
+safety:
+  - Do not exceed the driver voltage or current limits.
+  - Do not connect or disconnect the motor while the driver is powered.

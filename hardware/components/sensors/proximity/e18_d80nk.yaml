@@ -1,0 +1,68 @@
+identity:
+  id: e18_d80nk
+  name: E18-D80NK
+  manufacturer: Generic / Omron-style photoelectric sensor family
+  part_number: E18-D80NK
+  description: Adjustable infrared diffuse-reflective photoelectric proximity sensor.
+
+classification:
+  category: sensor
+  subcategory: proximity
+
+capabilities:
+  - proximity_detection
+  - obstacle_detection
+  - digital_object_detection
+
+interfaces:
+  - gpio
+
+pins:
+  - name: VCC
+    type: power
+    direction: power
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: OUT
+    type: gpio
+    direction: output
+    required: true
+
+electrical:
+  voltage:
+    min: 6.0
+    typical: 12.0
+    max: 36.0
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: read_detection
+      description: Read the digital detection state from the sensor.
+
+constraints:
+  - Exact electrical characteristics depend on the specific E18-D80NK module variant.
+  - Output interface type and polarity must be verified on the physical module.
+  - The sensor is intended for object/proximity detection rather than precision distance measurement.
+
+safety:
+  - Do not exceed the supply voltage of the exact module.
+  - Verify output voltage compatibility before connecting the output directly to an ESP32 GPIO.

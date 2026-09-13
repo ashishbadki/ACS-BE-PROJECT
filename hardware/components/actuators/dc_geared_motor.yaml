@@ -1,0 +1,64 @@
+identity:
+  id: dc_geared_motor
+  name: DC Geared Motor
+  manufacturer: Generic
+  part_number: Brushed DC Geared Motor
+  description: Brushed DC motor with an integrated gearbox for reduced speed and increased output torque.
+
+classification:
+  category: actuator
+  subcategory: dc_motor
+
+capabilities:
+  - rotational_motion
+  - speed_control
+  - direction_control
+
+interfaces:
+  - pwm
+
+pins:
+  - name: MOTOR_A
+    type: motor
+    direction: output
+    required: true
+
+  - name: MOTOR_B
+    type: motor
+    direction: output
+    required: true
+
+electrical:
+  voltage:
+    typical: 6.0
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: set_speed
+      description: Command motor speed through a compatible motor driver.
+
+    - name: set_direction
+      description: Command motor direction through a compatible motor driver.
+
+constraints:
+  - A motor driver is required.
+  - Exact voltage, current, gearbox ratio, speed, and torque depend on the selected motor.
+  - Stall current must be considered when sizing the driver and power supply.
+
+safety:
+  - Never drive the motor directly from ESP32 GPIO pins.
+  - Use a suitable motor driver and power supply.

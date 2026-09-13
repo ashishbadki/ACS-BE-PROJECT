@@ -1,0 +1,66 @@
+identity:
+  id: sg90
+  name: SG90
+  manufacturer: Generic / TowerPro-style servo
+  part_number: SG90
+  description: Small positional hobby servo motor controlled by a PWM-style servo signal.
+
+classification:
+  category: actuator
+  subcategory: servo
+
+capabilities:
+  - angular_position
+  - servo_motion
+
+interfaces:
+  - pwm
+
+pins:
+  - name: VCC
+    type: power
+    direction: power
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: SIGNAL
+    type: pwm
+    direction: input
+    required: true
+
+electrical:
+  voltage:
+    typical: 5.0
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries:
+    - ESP32Servo
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: set_angle
+      description: Command the servo to a target angular position.
+
+constraints:
+  - Exact voltage, current, torque, and angular range depend on the servo variant.
+  - Servo power should normally be supplied separately from the ESP32 GPIO.
+  - Servo ground must share an appropriate reference with the controller.
+
+safety:
+  - Do not power the servo directly from an ESP32 GPIO.
+  - Provide adequate current capacity for servo startup and stall conditions.

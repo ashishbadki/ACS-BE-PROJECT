@@ -1,0 +1,76 @@
+identity:
+  id: nema17
+  name: NEMA 17 Stepper Motor
+  manufacturer: Generic
+  part_number: NEMA 17
+  description: Bipolar hybrid stepper motor in the NEMA 17 mechanical frame size.
+
+classification:
+  category: actuator
+  subcategory: stepper_motor
+
+capabilities:
+  - rotational_motion
+  - precise_positioning
+  - step_motion
+
+interfaces:
+  - digital
+
+pins:
+  - name: A1
+    type: motor
+    direction: output
+    required: true
+
+  - name: A2
+    type: motor
+    direction: output
+    required: true
+
+  - name: B1
+    type: motor
+    direction: output
+    required: true
+
+  - name: B2
+    type: motor
+    direction: output
+    required: true
+
+electrical:
+  voltage:
+    typical: 4.0
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries:
+    - AccelStepper
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: step
+      description: Command one or more motor steps through a compatible driver.
+
+    - name: set_direction
+      description: Set the commanded direction of rotation through a compatible driver.
+
+constraints:
+  - NEMA 17 defines a mechanical frame size and does not uniquely define electrical characteristics.
+  - A dedicated stepper driver is required.
+  - Current, resistance, inductance, torque, and rated voltage must be verified for the selected motor.
+  - The motor must not be driven directly from ESP32 GPIO pins.
+
+safety:
+  - Never drive the motor coils directly from the ESP32.
+  - Use a suitable current-controlled stepper driver.

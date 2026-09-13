@@ -1,0 +1,78 @@
+identity:
+  id: ws2812b
+  name: WS2812B
+  manufacturer: Worldsemi
+  part_number: WS2812B
+  description: Individually addressable RGB LED with integrated constant-current driver.
+
+classification:
+  category: output
+  subcategory: addressable_led
+
+capabilities:
+  - rgb_output
+  - individually_addressable_led
+  - programmable_light_output
+
+interfaces:
+  - digital
+
+pins:
+  - name: VDD
+    type: power
+    direction: power
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: DIN
+    type: gpio
+    direction: input
+    required: true
+
+  - name: DOUT
+    type: gpio
+    direction: output
+    required: false
+
+electrical:
+  voltage:
+    min: 3.5
+    typical: 5.0
+    max: 5.3
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries:
+    - Adafruit NeoPixel
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: set_pixel
+      description: Set the RGB value of an individual LED.
+
+    - name: show
+      description: Transmit the LED data stream.
+
+constraints:
+  - Logic-level compatibility between ESP32 output and LED data input must be considered.
+  - Power consumption increases with LED count and brightness.
+  - Long LED chains may require distributed power injection.
+  - Exact electrical limits depend on the WS2812B revision.
+
+safety:
+  - Do not exceed the LED supply voltage.
+  - Size the power supply for the total LED current.

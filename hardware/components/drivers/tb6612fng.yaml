@@ -1,0 +1,132 @@
+identity:
+  id: tb6612fng
+  name: TB6612FNG
+  manufacturer: Toshiba
+  part_number: TB6612FNG
+  description: Dual full-bridge brushed DC motor driver for controlling up to two DC motors.
+
+classification:
+  category: driver
+  subcategory: dc_motor_driver
+
+capabilities:
+  - dc_motor_drive
+  - direction_control
+  - pwm_speed_control
+  - braking
+  - standby_control
+
+interfaces:
+  - gpio
+  - pwm
+
+pins:
+  - name: VM
+    type: power
+    direction: power
+    required: true
+
+  - name: VCC
+    type: power
+    direction: power
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: AIN1
+    type: control
+    direction: input
+    required: true
+
+  - name: AIN2
+    type: control
+    direction: input
+    required: true
+
+  - name: PWMA
+    type: pwm
+    direction: input
+    required: true
+
+  - name: BIN1
+    type: control
+    direction: input
+    required: true
+
+  - name: BIN2
+    type: control
+    direction: input
+    required: true
+
+  - name: PWMB
+    type: pwm
+    direction: input
+    required: true
+
+  - name: STBY
+    type: control
+    direction: input
+    required: true
+
+  - name: AO1
+    type: motor
+    direction: output
+    required: true
+
+  - name: AO2
+    type: motor
+    direction: output
+    required: true
+
+  - name: BO1
+    type: motor
+    direction: output
+    required: true
+
+  - name: BO2
+    type: motor
+    direction: output
+    required: true
+
+electrical:
+  voltage:
+    typical: 5.0
+    max: 15.0
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: set_motor_a
+      description: Control direction and PWM of motor channel A.
+
+    - name: set_motor_b
+      description: Control direction and PWM of motor channel B.
+
+    - name: standby
+      description: Put the motor driver into standby mode.
+
+constraints:
+  - Motor supply and logic supply are separate rails.
+  - Output current depends on thermal conditions and operating conditions.
+  - Motor stall current must remain within driver limits.
+  - STBY must be asserted appropriately for operation.
+
+safety:
+  - Do not exceed the driver supply and output-current limits.
+  - Provide adequate decoupling near the driver.

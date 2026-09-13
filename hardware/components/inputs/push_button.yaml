@@ -1,0 +1,59 @@
+identity:
+  id: push_button
+  name: Push Button
+  manufacturer: Generic
+  part_number: Momentary Push Button
+  description: Momentary mechanical switch for digital user input.
+
+classification:
+  category: input
+  subcategory: button
+
+capabilities:
+  - digital_input
+  - user_input
+  - momentary_switch
+
+interfaces:
+  - gpio
+
+pins:
+  - name: CONTACT_A
+    type: gpio
+    direction: bidirectional
+    required: true
+
+  - name: CONTACT_B
+    type: gpio
+    direction: bidirectional
+    required: true
+
+electrical:
+  voltage:
+    typical: 3.3
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: read_button
+      description: Read the current button state.
+
+constraints:
+  - Mechanical switch bounce must be handled by hardware or software debouncing.
+  - Pull-up or pull-down biasing is required for a stable logic state.
+
+safety:
+  - Do not exceed the switch electrical rating.

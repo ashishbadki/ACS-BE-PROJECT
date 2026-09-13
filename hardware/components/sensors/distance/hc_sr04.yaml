@@ -1,0 +1,80 @@
+identity:
+  id: hc_sr04
+  name: HC-SR04
+  manufacturer: HC-SR04 module family
+  part_number: HC-SR04
+  description: Ultrasonic ranging module for non-contact distance measurement.
+
+classification:
+  category: sensor
+  subcategory: distance
+
+capabilities:
+  - distance_measurement
+  - obstacle_detection
+  - ultrasonic_ranging
+
+interfaces:
+  - gpio
+
+pins:
+  - name: VCC
+    type: power
+    direction: power
+    required: true
+
+  - name: TRIG
+    type: control
+    direction: input
+    required: true
+
+  - name: ECHO
+    type: gpio
+    direction: output
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+electrical:
+  voltage:
+    min: 5.0
+    typical: 5.0
+    max: 5.0
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: trigger_measurement
+      description: Generate a trigger pulse to start ultrasonic ranging.
+
+    - name: read_echo_time
+      description: Measure the echo pulse duration returned by the module.
+
+    - name: read_distance
+      description: Convert echo timing into target distance.
+
+constraints:
+  - Typical measurement range is approximately 2 cm to 400 cm.
+  - Trigger input requires a short digital pulse.
+  - Echo output voltage must be checked for compatibility with the selected controller.
+  - Measurement timing must allow sufficient recovery time between ranging cycles.
+
+safety:
+  - Do not expose ESP32 GPIOs to incompatible logic voltage.
+  - Do not exceed the module supply voltage.

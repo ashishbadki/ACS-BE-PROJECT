@@ -1,0 +1,69 @@
+identity:
+  id: active_buzzer
+  name: Active Buzzer
+  manufacturer: Generic
+  part_number: Active Buzzer Module
+  description: Electrically driven buzzer producing an audible tone when enabled.
+
+classification:
+  category: output
+  subcategory: buzzer
+
+capabilities:
+  - audible_alert
+  - status_notification
+
+interfaces:
+  - gpio
+
+pins:
+  - name: VCC
+    type: power
+    direction: power
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: SIGNAL
+    type: control
+    direction: input
+    required: true
+
+electrical:
+  voltage:
+    min: 3.3
+    typical: 5.0
+    max: 5.0
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: buzzer_on
+      description: Enable the buzzer.
+
+    - name: buzzer_off
+      description: Disable the buzzer.
+
+constraints:
+  - Exact module trigger voltage and current depend on the selected buzzer module.
+  - A transistor driver may be required for modules exceeding GPIO drive capability.
+
+safety:
+  - Do not exceed the module supply voltage.
+  - Do not drive a high-current buzzer directly from a GPIO unless its current requirement is within GPIO limits.
