@@ -1,0 +1,98 @@
+identity:
+  id: tf_luna
+  name: TF-Luna
+  manufacturer: Benewake
+  part_number: TF-Luna
+  description: Short-range single-point ToF LiDAR distance sensor for measuring target distance.
+
+classification:
+  category: sensor
+  subcategory: distance
+
+capabilities:
+  - distance_measurement
+  - lidar
+  - time_of_flight
+  - obstacle_detection
+
+interfaces:
+  - uart
+  - i2c
+  - gpio
+
+pins:
+  - name: VCC
+    type: power
+    direction: power
+    required: true
+
+  - name: RXD_SDA
+    type: uart
+    direction: bidirectional
+    required: true
+
+  - name: TXD_SCL
+    type: uart
+    direction: bidirectional
+    required: true
+
+  - name: GND
+    type: ground
+    direction: power
+    required: true
+
+  - name: CONFIG
+    type: control
+    direction: input
+    required: false
+
+  - name: MULTIPLEXING_OUTPUT
+    type: gpio
+    direction: output
+    required: false
+
+electrical:
+  voltage:
+    min: 3.7
+    typical: 5.0
+    max: 5.2
+    unit: V
+
+compatibility:
+  controllers:
+    - esp32
+  frameworks:
+    - arduino
+
+software:
+  libraries: []
+  frameworks:
+    - Arduino
+  languages:
+    - C++
+
+hal:
+  operations:
+    - name: read_distance
+      description: Read measured target distance from the TF-Luna.
+
+    - name: configure_uart
+      description: Configure serial communication with the TF-Luna.
+
+    - name: configure_i2c
+      description: Configure I2C communication with the TF-Luna.
+
+constraints:
+  - Communication uses 3.3 V LVTTL levels.
+  - Host communication can use UART or I2C depending on configuration.
+  - Configuration input determines the communication mode.
+  - UART communication defaults to 115200 baud with 8 data bits, 1 stop bit, and no parity.
+  - Measurement range is 0.2 m to 8 m.
+  - Frame rate is configurable from 1 Hz to 250 Hz.
+  - Peak current can reach 150 mA.
+  - The sensor requires a supply voltage between 3.7 V and 5.2 V.
+
+safety:
+  - Do not exceed the specified supply voltage.
+  - Do not connect incompatible logic voltage levels to the communication interface.
+  - Account for the sensor peak current when designing the power supply.
