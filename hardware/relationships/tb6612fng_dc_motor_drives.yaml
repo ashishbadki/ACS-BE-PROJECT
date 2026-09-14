@@ -1,0 +1,5 @@
+﻿source: tb6612fng
+type: drives
+target: dc_geared_motor
+details:
+  control_method: pwm_direction

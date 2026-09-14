@@ -1,0 +1,5 @@
+﻿source: a4988
+type: drives
+target: nema17
+details:
+  control_method: step_dir

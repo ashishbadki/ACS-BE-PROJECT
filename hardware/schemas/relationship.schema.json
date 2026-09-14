@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://acs-project-be.local/schemas/relationship.schema.json",
+  "title": "ACS Hardware Relationship",
+  "description": "Machine-readable schema for relationships between hardware components used by the ACS hardware-aware robotics framework.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "source",
+    "type",
+    "target"
+  ],
+
+  "properties": {
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Component ID from the hardware knowledge base."
+    },
+
+    "type": {
+      "type": "string",
+      "enum": [
+        "interface",
+        "compatibility",
+        "requires",
+        "controls",
+        "drives",
+        "requires_power"
+      ],
+      "description": "Type of relationship between two hardware components."
+    },
+
+    "target": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Target component ID or resource ID."
+    },
+
+    "details": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Optional relationship-specific information."
+    }
+  }
+}

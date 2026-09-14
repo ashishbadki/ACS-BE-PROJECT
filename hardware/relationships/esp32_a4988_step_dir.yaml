@@ -1,0 +1,8 @@
+﻿source: esp32_devkit
+type: controls
+target: a4988
+details:
+  protocol: gpio
+  signals:
+    - step
+    - dir

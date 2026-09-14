@@ -1,0 +1,5 @@
+﻿source: esp32_devkit
+type: interface
+target: e18_d80nk
+details:
+  protocol: gpio

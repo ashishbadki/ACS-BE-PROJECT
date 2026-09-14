@@ -1,0 +1,5 @@
+﻿source: esp32_devkit
+type: interface
+target: oled_0_9_ssd1306
+details:
+  protocol: i2c

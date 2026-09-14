@@ -1,0 +1,5 @@
+﻿source: nema17
+type: requires
+target: a4988
+details:
+  reason: motor_driver_required

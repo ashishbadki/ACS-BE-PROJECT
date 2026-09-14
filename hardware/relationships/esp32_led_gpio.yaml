@@ -1,0 +1,5 @@
+﻿source: esp32_devkit
+type: interface
+target: led
+details:
+  protocol: gpio

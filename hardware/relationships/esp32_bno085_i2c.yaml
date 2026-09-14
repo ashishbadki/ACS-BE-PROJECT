@@ -1,0 +1,5 @@
+﻿source: esp32_devkit
+type: interface
+target: bno085
+details:
+  protocol: i2c

@@ -1,0 +1,5 @@
+﻿source: esp32_devkit
+type: interface
+target: tcs34725
+details:
+  protocol: i2c

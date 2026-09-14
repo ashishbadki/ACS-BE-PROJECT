@@ -1,0 +1,5 @@
+﻿source: esp32_devkit
+type: controls
+target: tb6612fng
+details:
+  protocol: gpio

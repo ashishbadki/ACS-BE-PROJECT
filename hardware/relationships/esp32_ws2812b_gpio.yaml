@@ -1,0 +1,5 @@
+﻿source: esp32_devkit
+type: interface
+target: ws2812b
+details:
+  protocol: gpio

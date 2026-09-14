@@ -1,0 +1,5 @@
+﻿source: esp32_devkit
+type: controls
+target: relay_5v
+details:
+  protocol: gpio
