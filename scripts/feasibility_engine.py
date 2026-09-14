@@ -270,6 +270,7 @@ def check_hardware_feasibility(
     matched_capabilities = []
     missing_capabilities = []
     candidate_components = []
+    hardware_paths = []
     reasons = []
 
     for capability_id in required_capabilities:
@@ -313,6 +314,17 @@ def check_hardware_feasibility(
             matched_capabilities.append(
                 capability_id
             )
+            for provider in compatible_providers:
+                provider_result = check_provider_with_dependencies(
+                    provider,
+                    controller_id,
+                    relationship_index
+                )
+
+                if provider_result["path"]:
+                    hardware_paths.append(
+                        provider_result["path"]
+                    )
 
             candidate_components.extend(
                 compatible_providers
@@ -361,12 +373,13 @@ def check_hardware_feasibility(
     ) == 0
 
     return {
-        "feasible": feasible,
-        "matched_capabilities": matched_capabilities,
-        "missing_capabilities": missing_capabilities,
-        "candidate_components": candidate_components,
-        "reasons": reasons
-    }
+    "feasible": feasible,
+    "matched_capabilities": matched_capabilities,
+    "missing_capabilities": missing_capabilities,
+    "candidate_components": candidate_components,
+    "hardware_paths": hardware_paths,
+    "reasons": reasons
+}
 
 
 def build_feasibility_result(
@@ -384,6 +397,7 @@ def build_feasibility_result(
             "matched_capabilities": result["matched_capabilities"],
             "missing_capabilities": result["missing_capabilities"],
             "candidate_components": result["candidate_components"],
+            "hardware_paths": result["hardware_paths"],
             "reasons": result["reasons"]
         }
     }

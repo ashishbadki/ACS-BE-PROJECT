@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://acs-project-be.local/schemas/plan.schema.json",
+  "title": "ACS Hardware-Aware Build Plan",
+  "description": "Machine-readable hardware-aware build plan produced by the ACS planning engine.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "request",
+    "feasibility",
+    "hardware_paths",
+    "hardware",
+    "steps"
+  ],
+
+  "properties": {
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "controller",
+        "required_capabilities"
+      ],
+      "properties": {
+        "controller": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      }
+    },
+
+    "feasibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "feasible",
+        "matched_capabilities",
+        "missing_capabilities"
+      ],
+      "properties": {
+        "feasible": {
+          "type": "boolean"
+        },
+        "matched_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+
+    "hardware_paths": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+
+    "hardware": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "component_id",
+          "role"
+        ],
+        "properties": {
+          "component_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "step",
+          "action"
+        ],
+        "properties": {
+          "step": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
