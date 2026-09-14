@@ -1,0 +1,18 @@
+identity:
+  id: humidity_measurement
+  name: Humidity Measurement
+  description: Measure relative humidity in the surrounding environment.
+
+classification:
+  category: sensing
+
+requirements:
+  inputs:
+    - ambient_environment
+  outputs:
+    - humidity_data
+
+constraints: {}
+
+providers:
+  - dht22

@@ -1,0 +1,18 @@
+identity:
+  id: acceleration_measurement
+  name: Acceleration Measurement
+  description: Measure linear acceleration along one or more axes.
+
+classification:
+  category: sensing
+
+requirements:
+  inputs:
+    - device_motion
+  outputs:
+    - acceleration_data
+
+constraints: {}
+
+providers:
+  - bno085

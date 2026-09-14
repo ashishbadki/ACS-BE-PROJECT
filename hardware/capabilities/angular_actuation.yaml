@@ -1,0 +1,22 @@
+identity:
+  id: angular_actuation
+  name: Angular Actuation
+  description: Move an actuator to a commanded angular position.
+
+classification:
+  category: actuation
+
+requirements:
+  inputs:
+    - angle_command
+  outputs:
+    - angular_motion
+
+constraints:
+  angle_range:
+    min: 0
+    max: 180
+
+providers:
+  - sg90
+  - mg90s

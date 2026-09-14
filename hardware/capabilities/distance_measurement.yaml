@@ -1,0 +1,20 @@
+identity:
+  id: distance_measurement
+  name: Distance Measurement
+  description: Measure the distance between a sensor and a target.
+
+classification:
+  category: sensing
+
+requirements:
+  inputs:
+    - physical_target
+  outputs:
+    - distance_data
+
+constraints:
+  requires_line_of_sight: true
+
+providers:
+  - tf_luna
+  - hc_sr04

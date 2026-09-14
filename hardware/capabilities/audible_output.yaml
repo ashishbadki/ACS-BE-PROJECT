@@ -1,0 +1,18 @@
+identity:
+  id: audible_output
+  name: Audible Output
+  description: Produce audible notification signals.
+
+classification:
+  category: output
+
+requirements:
+  inputs:
+    - audio_command
+  outputs:
+    - audible_signal
+
+constraints: {}
+
+providers:
+  - active_buzzer

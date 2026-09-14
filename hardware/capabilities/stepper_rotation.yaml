@@ -1,0 +1,19 @@
+identity:
+  id: stepper_rotation
+  name: Stepper Rotation
+  description: Produce controlled rotational motion using discrete motor steps.
+
+classification:
+  category: actuation
+
+requirements:
+  inputs:
+    - step_command
+    - direction_command
+  outputs:
+    - rotational_motion
+
+constraints: {}
+
+providers:
+  - nema17

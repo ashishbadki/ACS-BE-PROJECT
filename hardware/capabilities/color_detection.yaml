@@ -1,0 +1,20 @@
+identity:
+  id: color_detection
+  name: Color Detection
+  description: Detect the color characteristics of an object or scene.
+
+classification:
+  category: sensing
+
+requirements:
+  inputs:
+    - optical_scene
+  outputs:
+    - color_data
+
+constraints:
+  requires_line_of_sight: true
+  requires_illumination: true
+
+providers:
+  - tcs34725

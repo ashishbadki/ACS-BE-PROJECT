@@ -1,0 +1,18 @@
+identity:
+  id: addressable_led_output
+  name: Addressable LED Output
+  description: Control individual color and brightness values of addressable LEDs.
+
+classification:
+  category: output
+
+requirements:
+  inputs:
+    - led_pixel_command
+  outputs:
+    - colored_light
+
+constraints: {}
+
+providers:
+  - ws2812b

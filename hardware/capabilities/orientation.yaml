@@ -1,0 +1,18 @@
+identity:
+  id: orientation
+  name: Orientation Estimation
+  description: Estimate the orientation of a device relative to a reference frame.
+
+classification:
+  category: sensing
+
+requirements:
+  inputs:
+    - motion_data
+  outputs:
+    - orientation_data
+
+constraints: {}
+
+providers:
+  - bno085

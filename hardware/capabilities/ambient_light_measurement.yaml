@@ -1,0 +1,19 @@
+identity:
+  id: ambient_light_measurement
+  name: Ambient Light Measurement
+  description: Measure the intensity of ambient light.
+
+classification:
+  category: sensing
+
+requirements:
+  inputs:
+    - ambient_light
+  outputs:
+    - light_level_data
+
+constraints:
+  requires_line_of_sight: true
+
+providers:
+  - tcs34725

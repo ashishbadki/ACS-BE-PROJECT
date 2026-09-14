@@ -1,0 +1,20 @@
+identity:
+  id: obstacle_detection
+  name: Obstacle Detection
+  description: Detect the presence of an object within a sensing range.
+
+classification:
+  category: sensing
+
+requirements:
+  inputs:
+    - physical_scene
+  outputs:
+    - obstacle_state
+
+constraints:
+  requires_line_of_sight: true
+
+providers:
+  - hc_sr04
+  - e18_d80nk

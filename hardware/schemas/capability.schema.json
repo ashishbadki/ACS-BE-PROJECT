@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://acs-project-be.local/schemas/capability.schema.json",
+  "title": "ACS Hardware Capability",
+  "description": "Machine-readable schema for capabilities provided by hardware components in the ACS hardware-aware robotics framework.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "identity",
+    "classification",
+    "requirements",
+    "constraints",
+    "providers"
+  ],
+
+  "properties": {
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "category"
+      ],
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": [
+            "sensing",
+            "actuation",
+            "communication",
+            "input",
+            "output",
+            "power",
+            "computation"
+          ]
+        }
+      }
+    },
+
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inputs",
+        "outputs"
+      ],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requires_line_of_sight": {
+          "type": "boolean"
+        },
+        "requires_illumination": {
+          "type": "boolean"
+        },
+        "angle_range": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+
+    "providers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9_]+$",
+        "minLength": 1
+      }
+    }
+  }
+}

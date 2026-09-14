@@ -1,0 +1,18 @@
+identity:
+  id: led_output
+  name: LED Output
+  description: Produce a controllable visible light output.
+
+classification:
+  category: output
+
+requirements:
+  inputs:
+    - led_command
+  outputs:
+    - visible_light
+
+constraints: {}
+
+providers:
+  - led

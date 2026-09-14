@@ -1,0 +1,18 @@
+identity:
+  id: display_output
+  name: Display Output
+  description: Present text or graphical information on a visual display.
+
+classification:
+  category: output
+
+requirements:
+  inputs:
+    - display_data
+  outputs:
+    - visual_information
+
+constraints: {}
+
+providers:
+  - oled_0_9_ssd1306

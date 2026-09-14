@@ -1,0 +1,18 @@
+identity:
+  id: angular_velocity_measurement
+  name: Angular Velocity Measurement
+  description: Measure rotational velocity of a device.
+
+classification:
+  category: sensing
+
+requirements:
+  inputs:
+    - device_rotation
+  outputs:
+    - angular_velocity_data
+
+constraints: {}
+
+providers:
+  - bno085

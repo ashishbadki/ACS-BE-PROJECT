@@ -1,0 +1,18 @@
+identity:
+  id: temperature_measurement
+  name: Temperature Measurement
+  description: Measure ambient temperature.
+
+classification:
+  category: sensing
+
+requirements:
+  inputs:
+    - ambient_environment
+  outputs:
+    - temperature_data
+
+constraints: {}
+
+providers:
+  - dht22

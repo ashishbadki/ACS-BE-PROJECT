@@ -1,0 +1,18 @@
+identity:
+  id: analog_input
+  name: Analog Input
+  description: Read a continuously varying electrical signal.
+
+classification:
+  category: input
+
+requirements:
+  inputs:
+    - analog_signal
+  outputs:
+    - analog_value
+
+constraints: {}
+
+providers:
+  - potentiometer

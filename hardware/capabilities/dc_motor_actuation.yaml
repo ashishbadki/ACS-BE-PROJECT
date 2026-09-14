@@ -1,0 +1,18 @@
+identity:
+  id: dc_motor_actuation
+  name: DC Motor Actuation
+  description: Produce controlled continuous rotational motion using a DC motor.
+
+classification:
+  category: actuation
+
+requirements:
+  inputs:
+    - motor_command
+  outputs:
+    - rotational_motion
+
+constraints: {}
+
+providers:
+  - dc_geared_motor

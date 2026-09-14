@@ -1,0 +1,18 @@
+identity:
+  id: digital_input
+  name: Digital Input
+  description: Read a discrete digital state from an input device.
+
+classification:
+  category: input
+
+requirements:
+  inputs:
+    - digital_signal
+  outputs:
+    - digital_state
+
+constraints: {}
+
+providers:
+  - push_button
