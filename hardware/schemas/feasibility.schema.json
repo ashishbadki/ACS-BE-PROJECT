@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://acs-project-be.local/schemas/feasibility.schema.json",
+  "title": "ACS Hardware Feasibility Result",
+  "description": "Machine-readable result produced by the ACS hardware capability feasibility engine.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "request",
+    "result"
+  ],
+
+  "properties": {
+    "request": {
+  "type": "object",
+  "required": [
+    "controller",
+    "required_capabilities"
+  ],
+  "properties": {
+    "controller": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required_capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+},
+
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+
+      "required": [
+        "feasible",
+        "matched_capabilities",
+        "missing_capabilities",
+        "candidate_components",
+        "reasons"
+      ],
+
+      "properties": {
+        "feasible": {
+          "type": "boolean"
+        },
+
+        "matched_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+
+        "missing_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+
+        "candidate_components": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
