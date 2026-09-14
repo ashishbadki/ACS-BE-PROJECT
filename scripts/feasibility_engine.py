@@ -373,13 +373,13 @@ def check_hardware_feasibility(
     ) == 0
 
     return {
-    "feasible": feasible,
-    "matched_capabilities": matched_capabilities,
-    "missing_capabilities": missing_capabilities,
-    "candidate_components": candidate_components,
-    "hardware_paths": hardware_paths,
-    "reasons": reasons
-}
+        "feasible": feasible,
+        "matched_capabilities": matched_capabilities,
+        "missing_capabilities": missing_capabilities,
+        "candidate_components": candidate_components,
+        "hardware_paths": hardware_paths,
+        "reasons": reasons
+    }
 
 
 def build_feasibility_result(
@@ -397,7 +397,6 @@ def build_feasibility_result(
             "matched_capabilities": result["matched_capabilities"],
             "missing_capabilities": result["missing_capabilities"],
             "candidate_components": result["candidate_components"],
-            "hardware_paths": result["hardware_paths"],
             "reasons": result["reasons"]
         }
     }
